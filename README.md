@@ -33,6 +33,7 @@ Al terminar se genera el archivo `reporte.html` con los resultados
 
 ## Casos de prueba
 - Login exitoso
+- Login vacio
 - Título de la página de inventario, presencia de productos
 - Agregar el primer producto al carrito, verificar el contador y que el producto aparezca en el carrito
 

@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 def test_login_exitoso():
     driver = webdriver.Chrome()
+    driver.implicitly_wait(10)
 
     try:
         driver.get("https://www.saucedemo.com/")
@@ -23,6 +24,27 @@ def test_login_exitoso():
 
         titulo = driver.find_element(By.CSS_SELECTOR,'[data-test="title"]')
         assert titulo.text == "Products"
+    
+    finally:
+        driver.quit()
+
+def test_login_vacio():
+    driver = webdriver.Chrome()
+    driver.implicitly_wait(10)
+
+    try:
+        driver.get("https://www.saucedemo.com/")
+
+        usuario = driver.find_element(By.ID,"user-name")
+        password =driver.find_element(By.ID,"password")
+        boton_login = driver.find_element(By.ID,"login-button")
+
+        usuario.send_keys("")
+        password.send_keys("")
+        boton_login.click()
+
+        error = driver.find_element(By.CSS_SELECTOR, '[data-test="error"]')
+        assert error.is_displayed()
     
     finally:
         driver.quit()
